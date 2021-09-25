@@ -137,7 +137,7 @@ def implement(room, grid, ind):
             if (grid[i][j] == 2):
                 grid[i][j] = 0
             if (grid[i][j] == 3):
-                grid[i][j] = 1:
+                grid[i][j] = 1
 
     tot = 0
 
