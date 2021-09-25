@@ -94,6 +94,40 @@ def implement(room, grid, ind):
         ans = -1
     answer["p2"] = ans   
 
+    for i in range(n):
+        for j in range(m):
+            grid1[i][j] = big
+
+    q = deque()
+    q.append([stx,sty])
+    a = 0
+    grid1[stx][sty] = 0
+    while (len(q) > 0):
+        g = q.popleft()
+        xx = g[0]
+        yy = g[1]
+        print(xx,yy)
+        for i in range(8):
+            tmx = xx + dx[i]
+            tmy = yy + dy[i]
+            if check(tmx,tmy,n,m) == 1:
+                print("testing", tmx,tmy,grid1[tmx][tmy],grid1[xx][yy],grid[tmx][tmy] )
+                if grid1[tmx][tmy] > grid1[xx][yy] + 1 and (grid[tmx][tmy] == 1):
+                    grid1[tmx][tmy] = grid1[xx][yy] + 1
+                    q.append([tmx,tmy])   
+
+    ans = 0
+    for i in range(n):
+        for j in range(m):
+            if (grid[i][j] == 1):
+                if (grid1[i][j] == big):
+                    ans = big
+                else:
+                    ans = max(ans, grid1[i][j])   
+    
+    if (ans == big):
+        ans = -1
+    answer["p3"] = ans       
 
     return answer
 
