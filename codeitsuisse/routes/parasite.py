@@ -226,7 +226,7 @@ def implement(room, grid, ind):
             if cur[j] == 0:
                 dist[j] = min(dist[j],cost[id][j])
 
-    answer["p4"] = ans
+    answer["p4"] = -1
     return answer
 
 def check(x, y, n, m):
