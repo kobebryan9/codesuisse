@@ -55,7 +55,7 @@ def implement(room, grid, ind):
             tmy = yy + dy[i]
             if check(tmx,tmy,n,m) == 1:
                 print("testing", tmx,tmy,grid1[tmx][tmy],grid1[xx][yy],grid[tmx][tmy] )
-                if grid1[tmx][tmy] > grid1[xx][yy] + 1 and (grid[tmx][tmy] == 1 or grid[tmx][tmy] == 2):
+                if grid1[tmx][tmy] > grid1[xx][yy] + 1 and (grid[tmx][tmy] == 1):
                     grid1[tmx][tmy] = grid1[xx][yy] + 1
                     q.append([tmx,tmy])
 
