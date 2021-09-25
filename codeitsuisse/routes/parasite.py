@@ -81,6 +81,17 @@ def implement(room, grid, ind):
             answer["p1"][x] = -1
         #print(xx,yy)
 
+    ans = 0
+    for i in range(n):
+        for j in range(m):
+            if (grid[i][j] == 1):
+                if (grid1[i][j] == big):
+                    ans = big
+                else:
+                    ans = max(ans, grid1[i][j])
+
+    if (ans == big) ans = -1
+    answer["p2"] = ans   
 
 
     return answer
