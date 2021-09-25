@@ -41,7 +41,7 @@ def implement(questions, coefficients, maxRating):
         questions.sort()
         total = 0
         last = 0
-        for (i in range(Q - 1)):
+        for i in range(Q - 1):
             if (questions[i]["from"] > last):
                 total += questions[i]["from"] - last - 1
                 last = questions[i]["to"]
