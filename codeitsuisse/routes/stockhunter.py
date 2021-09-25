@@ -16,40 +16,39 @@ def evaluateStock():
     return json.dumps(result)
 
 def implement(sx,sy,ex,ey,a,b,c,d):
-    w, h = max(sy,ey) + 3, max(sx,ex) + 3
+    w, h = max(sx,ex) + 3, max(sy,ey) + 3
     cost = [[0 for x in range(w)] for y in range(h)] 
     for i in range(h):
         for j in range(w):
             if (i == 0 and j == 0):
                 cost[i][j] = a % b
-                #cost[i][j] = (cost[i][j]) % 3
             elif (i == 0):
-                cost[i][j] = (j * c + a) % b
-                #cost[i][j] = (cost[i][j]) % 3
+                cost[i][j] = (j * d + a) % b
+
             elif (j == 0):
-                cost[i][j] = (i * d + a) % b
-                #cost[i][j] = (cost[i][j]) % 3
+                cost[i][j] = (i * c + a) % b
+
             else:
                 cost[i][j] = (cost[i-1][j] * cost[i][j-1] + a) % b
-            #cost[i][j] = 3 - cost[i][j]  
-            #       
+                   
     for i in range(h):
         for j in range(w):
             cost[i][j] = (cost[i][j]) % 3
             cost[i][j] = 3 - cost[i][j]                           
     
-    n = abs(sx-ex) + 1
-    m = abs(sy-ey) + 1
+    n = abs(sy-ey) + 1
+    m = abs(sx-ex) + 1
     print(n,m)
     output = [["" for x in range(m)] for y in range(n)]    
 
     key = 0
     for i in range(h):
         for j in range(w):
-            if (i == min(sx,ex) and j == min(sy,ey)):
-                for ii in range(n):
-                    for jj in range(m):
-                        output[ii][jj] = chn(cost[i+ii][j+jj])
+            if (i == min(sy,ey) and j == min(sx,ex)):
+                print(i,j)
+                for jj in range(m):
+                    for ii in range(n):
+                        output[jj][ii] = chn(cost[i+ii][j+jj])
                 key = 1
             if (key == 1):
                 break
