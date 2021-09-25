@@ -1,29 +1,22 @@
 import logging
 import json
-
 from flask import request, jsonify
-
 from codeitsuisse import app
 from collections import deque
-
 logger = logging.getLogger(__name__)
-
 @app.route('/parasite', methods=['POST'])
 def evaluateParasite():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-
     result = []
     for testcase in data:
         result.append(implement(testcase["room"],testcase["grid"],testcase["interestedIndividuals"]))
     
     logging.info("My result :{}".format(result))
     return json.dumps(result)
-
 def implement(room, grid, ind):
     dx = [0, 0, 1, -1, 1, 1, -1, -1]
     dy = [1, -1, 0 , 0, -1, 1, -1, 1]
-
     n = len(grid)
     m = len(grid[0])    
     big = n*m + 1
@@ -32,7 +25,6 @@ def implement(room, grid, ind):
 
     stx = 0
     sty = 0
-
     for i in range(n):
         for j in range(m):
             grid1[i][j] = big
@@ -40,7 +32,6 @@ def implement(room, grid, ind):
             if (grid[i][j] == 3):
                 stx = i
                 sty = j
-
     print(stx,sty)
     q = deque()
     q.append([stx,sty])
@@ -59,14 +50,12 @@ def implement(room, grid, ind):
                 if grid1[tmx][tmy] > grid1[xx][yy] + 1 and (grid[tmx][tmy] == 1):
                     grid1[tmx][tmy] = grid1[xx][yy] + 1
                     q.append([tmx,tmy])
-
     answer = {}
     answer["room"] = room
     answer["p1"] = {}
     answer["p2"] = 0
     answer["p3"] = 0
     answer["p4"] = 0
-
     for x in ind:
         nn = len(x)
         xx = 0
@@ -75,13 +64,11 @@ def implement(room, grid, ind):
             if (x[i] == ","):
                 xx = int(x[0:i])
                 yy = int(x[i+1:nn])
-
         if (grid1[xx][yy] != big and grid[xx][yy] != 3 and grid[xx][yy] != 2):
             answer["p1"][x] = grid1[xx][yy]
         else:
             answer["p1"][x] = -1
         #print(xx,yy)
-
     ans = 0
     for i in range(n):
         for j in range(m):
@@ -90,15 +77,12 @@ def implement(room, grid, ind):
                     ans = big
                 else:
                     ans = max(ans, grid1[i][j])
-
     if (ans == big):
         ans = -1
     answer["p2"] = ans   
-
     for i in range(n):
         for j in range(m):
             grid1[i][j] = big
-
     q = deque()
     q.append([stx,sty])
     a = 0
@@ -116,7 +100,6 @@ def implement(room, grid, ind):
                 if grid1[tmx][tmy] > grid1[xx][yy] + 1 and (grid[tmx][tmy] == 1):
                     grid1[tmx][tmy] = grid1[xx][yy] + 1
                     q.append([tmx,tmy])   
-
     ans = 0
     for i in range(n):
         for j in range(m):
@@ -130,14 +113,12 @@ def implement(room, grid, ind):
         ans = -1
     answer["p3"] = ans       
 
-    
+
     for i in range(n):
         for j in range(m):
             grid1[i][j] = -1
             if (grid[i][j] == 2):
                 grid[i][j] = 0
-            if (grid[i][j] == 3):
-                grid[i][j] = 1
 
     tot = 0
 
@@ -236,4 +217,3 @@ def check(x, y, n, m):
         return 0
     else:
         return 1
-
