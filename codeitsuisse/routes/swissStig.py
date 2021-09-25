@@ -64,7 +64,7 @@ def implement(questions, coefficients, maxRating):
         remain.sort()
         for q in remain:
             if (q[0] > last):
-                total += q0] - last - 1
+                total += q[0] - last - 1
                 last = q[1]
             else:
                 last = max(last, q[1])
