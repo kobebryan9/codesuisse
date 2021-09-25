@@ -136,6 +136,8 @@ def implement(room, grid, ind):
             grid1[i][j] = -1
             if (grid[i][j] == 2):
                 grid[i][j] = 0
+            if (grid[i][j] == 3):
+                grid[i][j] = 1:
 
     tot = 0
 
@@ -226,7 +228,7 @@ def implement(room, grid, ind):
             if cur[j] == 0:
                 dist[j] = min(dist[j],cost[id][j])
 
-    answer["p4"] = -1
+    answer["p4"] = ans
     return answer
 
 def check(x, y, n, m):
