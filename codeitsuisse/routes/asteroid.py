@@ -33,7 +33,7 @@ def implement(s):
     answer["input"] = s
     lenn = len(s)
     origin = 0
-    score = 0
+    score = 1
     for i in range(lenn):
         tmpscore = 0
         p1 = i - 1
@@ -55,7 +55,7 @@ def implement(s):
                 count += 1
                 tmpscore += calculate(count)
             else:
-                tmpscore += calculate(count) + 1
+                tmpscore = -999999
 
             while (p1 >= 0 and p2 < lenn):
                 p1 -= 1
