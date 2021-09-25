@@ -90,7 +90,8 @@ def implement(room, grid, ind):
                 else:
                     ans = max(ans, grid1[i][j])
 
-    if (ans == big) ans = -1
+    if (ans == big):
+        ans = -1
     answer["p2"] = ans   
 
 
