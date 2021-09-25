@@ -23,10 +23,10 @@ def implement(sx,sy,ex,ey,a,b,c,d):
             if (i == 0 and j == 0):
                 cost[i][j] = a % b
             elif (i == 0):
-                cost[i][j] = (j * d + a) % b
+                cost[i][j] = (j * c + a) % b
 
             elif (j == 0):
-                cost[i][j] = (i * c + a) % b
+                cost[i][j] = (i * d + a) % b
 
             else:
                 cost[i][j] = (cost[i-1][j] * cost[i][j-1] + a) % b
@@ -48,7 +48,7 @@ def implement(sx,sy,ex,ey,a,b,c,d):
                 print(i,j)
                 for jj in range(m):
                     for ii in range(n):
-                        output[jj][ii] = chn(cost[i+ii][j+jj])
+                        output[ii][jj] = chn(cost[i+ii][j+jj])
                 key = 1
             if (key == 1):
                 break
@@ -67,3 +67,6 @@ def chn(x):
         return "M"
     elif (x == 1):
         return "S"
+
+#def check(x , y):
+#    if (x )
